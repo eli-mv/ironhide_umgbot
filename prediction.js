@@ -29,5 +29,5 @@
      [12,20,8]
  ]);
 
- const result = network.run([2,19]);
+ const result = network.run([2,21]);
  console.log(result)
