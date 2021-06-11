@@ -11,6 +11,13 @@ const pool = new Pool({
     
 });
 
+
+const getResultmes = async (req, res) => {
+    const mes= req.params.mes;
+    const response =  await pool.query('select * from predictiondb where mes = $1', [mes] );
+    res.status(200).json(response.rows)
+}
+
 const getUsers = async (req, res) => {
     const response = await pool.query('select * from predictiondb' );
     console.log(response.rows);
@@ -30,10 +37,21 @@ const postDatos = async (req, res) => {
 
 }
 
+const updateResult = async (req, res) => {
+    const mes = req.params.mes;
+    const {resultado} = req.body;
+    const response = await pool.query('UPDATE public.predictiondb SET resultado= $1 WHERE mes=$2', [resultado,mes]);
+    res.send('Listo');
+
+}
+
+
 
 module.exports= {
     getUsers,
     postDatos,
-    getPre
+    getPre,
+    getResultmes,
+    updateResult
 }
 

@@ -28,19 +28,17 @@ const getPredictionDos = async () => {
   //  console.log(JSON.stringify(res.rows[2]));
 
     let resultado2 = JSON.parse(JSON.stringify(res.rows[2]))
-    return resultado2.resultado // “Chacarron”
+    return resultado2.resultado // 
    };
 
-   
 
-//getPredictionCero();
-//getPredictionUno();
 
-//getPredictionDos().then(val => console.log(val));
 
+
+//Enero
 
 const request = require("request-promise"),
-    RUTA = "http://localhost:3636/pre";
+    RUTA = "http://localhost:3636/mes/1";
 
 request({
     uri: RUTA,
@@ -49,7 +47,54 @@ request({
     predictiondb.forEach(predictiondb => {
         console.log(`${predictiondb.resultado}`);
 
-        bot.hears('Abril', (ctx) =>  ctx.reply('esto es Enero 2022 '+ predictiondb.resultado ))
+        bot.hears('Enero', (ctx) =>  ctx.reply('Debes de comparar '+ predictiondb.resultado +' Libras de carne para el mes de Febrero de 2022' ))
+    })
+});
+
+//Febrero
+
+const request2 = require("request-promise"),
+    RUTA2 = "http://localhost:3636/mes/2";
+
+request({
+    uri: RUTA2,
+    json: true, // Para que lo decodifique automáticamente 
+}).then(predictiondb => {
+    predictiondb.forEach(predictiondb => {
+        console.log(`${predictiondb.resultado}`);
+        bot.hears('Febrero', (ctx) =>  ctx.reply('Debes de comparar  '+ predictiondb.resultado+' Libras de carne para el mes de Febrero de 2022' ))
+    })
+});
+
+
+//Marzo
+
+const request3 = require("request-promise"),
+    RUTA3 = "http://localhost:3636/mes/3";
+
+request({
+    uri: RUTA3,
+    json: true, // Para que lo decodifique automáticamente 
+}).then(predictiondb => {
+    predictiondb.forEach(predictiondb => {
+        console.log(`${predictiondb.resultado}`);
+        bot.hears('Marzo', (ctx) =>  ctx.reply('Debes de comparar '+ predictiondb.resultado +' Libras de carne para el mes de Marzo de 2022' ))
+    })
+});
+
+
+//Abril
+
+const request4 = require("request-promise"),
+    RUTA4 = "http://localhost:3636/mes/4";
+
+request({
+    uri: RUTA4,
+    json: true, // Para que lo decodifique automáticamente 
+}).then(predictiondb => {
+    predictiondb.forEach(predictiondb => {
+        console.log(`${predictiondb.resultado}`);
+        bot.hears('Abril', (ctx) =>  ctx.reply('Debes de comparar '+ predictiondb.resultado +' Libras de carne para el mes de Abril de 2022' ))
     })
 });
 
@@ -63,10 +108,6 @@ request({
 
 
 
-//console.log(result2);
-
-
-
 //conexion y lectura de datos de la base de datos
 
 
@@ -75,14 +116,14 @@ const {Telegraf} = require('telegraf')
 const bot = new Telegraf('1710405315:AAFfY_Xz6somIeSmv3_JyDmC4ie0YODYNRw')
 
 bot.start((cxt) => {
-    cxt.reply('Hola dime que mes es el que deseas predecir Enero, Febrero o Marzo 2020 para comprar');
+    cxt.reply('Hola, quieres saber cuanta carne de res debes de estimar para comprar en los meses del 2022, escribe el mes que desees predecir de Enero a Diciembre');
 })
 
 
-bot.hears('Enero', (ctx) =>  ctx.reply('esto es Enero 2022 '))
-bot.hears('Febrero',(ctx) =>  ctx.reply('esto es Febrero 2022'))
-bot.hears('Marzo', (ctx) =>  ctx.reply('Esto es marzo 2022'))
+//bot.hears('Enero', (ctx) =>  ctx.reply('esto es Enero 2022 '))
+//bot.hears('Febrero',(ctx) =>  ctx.reply('esto es Febrero 2022'))
+//bot.hears('Marzo', (ctx) =>  ctx.reply('Esto es marzo 2022'))
 
-bot.on('pedro', ctx =>  ctx.reply('Esto es marzo 2022'))
+//bot.on('pedro', ctx =>  ctx.reply('Esto es marzo 2022'))
 
 bot.launch()
