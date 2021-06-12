@@ -13,5 +13,6 @@ Estructura:
 
 > En la carpeta controller se encuentran todos los funciones de la API Rest.
 > En la carpeta Route se configuran las rutas y funciones a utilizar con cada ruta
+> Para poder ver las predicciones se debe de ejecutar el archivo ironprediction.html
 > En el archivo ironhide_umgbot.js es el archivo que se debe de ejecutar para que el chatbot se active con el comando:
 - Node ironhide_umgbot.js
