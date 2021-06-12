@@ -40,7 +40,7 @@ const postDatos = async (req, res) => {
 const updateResult = async (req, res) => {
     const mes = req.params.mes;
     const {resultado} = req.body;
-    const response = await pool.query('UPDATE public.predictiondb SET resultado= $1 WHERE mes=$2', [resultado,mes]);
+    const response = await pool.query('UPDATE public.predictiondb SET resultado = $1 WHERE mes=$2', [resultado,mes]);
     res.send('Listo');
 
 }

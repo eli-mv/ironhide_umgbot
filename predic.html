@@ -74,10 +74,6 @@ $( document ).ready(function() {
 
 
 
-
-
-
-
         var par1= 0;
         var par2=0;
         var par3=0;
@@ -124,7 +120,7 @@ $( document ).ready(function() {
         console.log(results)
         var numero = results; 
         var conDecimal = numero.toFixed(2); 
-        //document.getElementById("salida").innerHTML=conDecimal;
+        document.getElementById("salida").innerHTML=conDecimal;
         $("#txtprediccion").val(conDecimal  );
          results = network.run([par2,19])
         console.log(results)
