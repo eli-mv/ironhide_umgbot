@@ -1,5 +1,5 @@
-#Proyecto IronHide_UmgBot
-##Tecnologias Utilizadas:
+# Proyecto IronHide_UmgBot
+## Tecnologias Utilizadas:
 - Brain.js : para la aplicación de redes neuronales 
 - Telegraf: para la interaccion con telegram y el chatbot
 - NodeJS: entorno en tiempo de ejecución para el servidor JS
