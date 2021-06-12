@@ -24,3 +24,13 @@ Para poder ver las predicciones se debe de ejecutar el archivo ironprediction.ht
 En el archivo ironhide_umgbot.js es el archivo que se debe de ejecutar para que el chatbot se active con el comando:
 - Node ironhide_umgbot.js
 ```
+
+```
+La cadena de conexion se encuentra en el archivo
+ironhide_umgbot.js
+```
+
+```
+Para poder utilizar nuestro chatbot fue necesario registrarlo en teleggram por medio de BotFather el cual nos facilito un Token
+para poder utilizarlo en la interaccion con telegram
+```
