@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brain.js/2.0.0-beta.2/brain-browser.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="advanced-search-form">
+        <h2>Predicción Iron Hide - 2022 - Compra de carne</h2>
+        <form action="" method="get">
+            <div class="form-group">
+                <label for="first-name">Enero / Libras</label>
+                <input type="text" class="form-control" placeholder="Enero" name="enero" id="enero">
+            </div>
+            <div class="form-group">
+                <label for="first-name">Febrero / Libras</label>
+                <input type="text" class="form-control" placeholder="Febrero" name="febrero" id="febrero">
+            </div>
+            <div class="form-group">
+                <label for="first-name">Marzo / Libras</label>
+                <input type="text" class="form-control" placeholder="marzo" name="marzo" id="marzo">
+            </div>
+            <div class="form-group">
+                <label for="first-name">Abril / Libras</label>
+                <input type="text" class="form-control" placeholder="Abril" name="abril" id="abril">
+            </div>
+            <div class="form-group">
+                <label for="first-name">Mayo / Libras</label>
+                <input type="text" class="form-control" placeholder="Mayo" name="mayo" id="mayo">
+            </div>
+            <div class="form-group">
+                <label for="first-name">Junio / Libras</label>
+                <input type="text" class="form-control" placeholder="Junio" name="junio" id="junio">
+            </div>
+        </form>
+        <button onclick="sub()" class="btn btn-info btn-lg btn-responsive"> <span
+                class="glyphicon glyphicon-eye-open"></span> Publicar Predicción</button>
+    </div>
+</body>
+
+<script>
+
+
+
+
+    //const brain = require('brain.js')
+
+    const network = new brain.recurrent.LSTMTimeStep();
+
+
+    network.train([
+        [1, 20, 9],
+        [2, 20, 11],
+        [3, 20, 13],
+        [4, 20, 8],
+        [5, 20, 10],
+        [6, 20, 8],
+        [7, 20, 13],
+        [8, 20, 12],
+        [9, 20, 10],
+        [10, 20, 8],
+        [11, 20, 10],
+        [12, 20, 14],
+        [1, 21, 11],
+        [2, 21, 12],
+        [3, 21, 10],
+        [4, 21, 9],
+        [5, 21, 11],
+        [6, 21, 13],
+        [7, 21, 10],
+        [8, 21, 12],
+        [9, 21, 10],
+        [10, 21, 15],
+        [11, 21, 10],
+        [12, 21, 12]
+    ]);
+
+
+    const results = network.run([1, 22])
+    var numero = results;
+    var conDecimal = numero.toFixed(2);
+    //  document.getElementById("salida").innerHTML=conDecimal;
+    $("#enero").val(conDecimal);
+
+
+    const febrero = network.run([2, 22])
+    var resultado2 = febrero.toFixed(2);
+    $("#febrero").val(resultado2);
+
+
+    const marzo = network.run([3, 22])
+    var resultado3 = marzo.toFixed(2);
+    $("#marzo").val(resultado3);
+
+    const abril = network.run([4, 22])
+    var resultado4 = abril.toFixed(2);
+    $("#abril").val(resultado4);
+
+
+    const mayo = network.run([5, 22])
+    var resultado5 = mayo.toFixed(2);
+    $("#mayo").val(resultado5);
+
+    const junio = network.run([6, 22])
+    var resultado6 = junio.toFixed(2);
+    $("#junio").val(resultado6);
+
+
+</script>
+
+
+
+<script>
+
+    var varenero = null;
+    var varfebrero = null;
+    var status = null;
+
+    function sub() {
+        varenero = document.getElementsByName("enero")[0].value;
+        varfebrero = document.getElementsByName("febrero")[0].value;
+        varmarzo = document.getElementsByName("marzo")[0].value;
+        varabril = document.getElementsByName("abril")[0].value;
+        varmayo = document.getElementsByName("mayo")[0].value;
+        varjunio = document.getElementsByName("junio")[0].value;
+        
+
+        const jsonEnero = '{ "resultado": ' + varenero + ' }';
+        const objEnero = JSON.parse(jsonEnero);
+        //  console.log(objEnero);
+
+        const jsonFebrero = '{ "resultado": ' + varfebrero + ' }';
+        const objFebrero = JSON.parse(jsonFebrero);
+
+        const jsonMarzo = '{ "resultado": ' + varmarzo + ' }';
+        const objMarzo = JSON.parse(jsonMarzo);
+
+        const jsonAbril = '{ "resultado": ' + varabril + ' }';
+        const objAbril = JSON.parse(jsonAbril);
+
+        const jsonMayo = '{ "resultado": ' + varmayo + ' }';
+        const objMayo = JSON.parse(jsonMayo);
+
+        const jsonjunio = '{ "resultado": ' + varjunio + ' }';
+        const objJunio = JSON.parse(jsonjunio);
+
+
+        // Receive the content and automatically attempt to parse it
+        $.ajax({
+            url: 'http://localhost:3636/update/1',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objEnero)
+        })
+
+
+        $.ajax({
+            url: 'http://localhost:3636/update/2',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objFebrero)
+        })
+
+        $.ajax({
+            url: 'http://localhost:3636/update/3',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objMarzo)
+        })
+
+        $.ajax({
+            url: 'http://localhost:3636/update/4',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objAbril)
+        })
+
+        $.ajax({
+            url: 'http://localhost:3636/update/5',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objMayo)
+        })
+
+        $.ajax({
+            url: 'http://localhost:3636/update/6',
+            type: 'put',
+            contentType: 'application/json',
+            data: JSON.stringify(objJunio)
+        })
+        alert("Datos Registrado");
+
+    };
+
+
+</script>
+
+
+</html>

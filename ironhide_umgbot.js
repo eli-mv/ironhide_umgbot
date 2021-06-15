@@ -31,10 +31,7 @@ const getPredictionDos = async () => {
     return resultado2.resultado // 
    };
 
-
-
-
-
+ 
 //Enero
 
 const request = require("request-promise"),
@@ -99,12 +96,32 @@ request({
 });
 
 
+const request5 = require("request-promise"),
+    RUTA5 = "http://localhost:3636/mes/5";
+
+request({
+    uri: RUTA5,
+    json: true, // Para que lo decodifique automáticamente 
+}).then(predictiondb => {
+    predictiondb.forEach(predictiondb => {
+        console.log(`${predictiondb.resultado}`);
+        bot.hears('Mayo', (ctx) =>  ctx.reply('Debes de comparar '+ predictiondb.resultado +' Libras de carne para el mes de Abril de 2022' ))
+    })
+});
 
 
+const request6 = require("request-promise"),
+    RUTA6 = "http://localhost:3636/mes/6";
 
-
-
-
+request({
+    uri: RUTA6,
+    json: true, // Para que lo decodifique automáticamente 
+}).then(predictiondb => {
+    predictiondb.forEach(predictiondb => {
+        console.log(`${predictiondb.resultado}`);
+        bot.hears('Junio', (ctx) =>  ctx.reply('Debes de comparar '+ predictiondb.resultado +' Libras de carne para el mes de Abril de 2022' ))
+    })
+});
 
 
 
@@ -117,13 +134,6 @@ const bot = new Telegraf('1710405315:AAFfY_Xz6somIeSmv3_JyDmC4ie0YODYNRw')
 
 bot.start((cxt) => {
     cxt.reply('Hola, quieres saber cuanta carne de res debes de estimar para comprar en los meses del 2022, escribe el mes que desees predecir de Enero a Diciembre');
-})
-
-
-//bot.hears('Enero', (ctx) =>  ctx.reply('esto es Enero 2022 '))
-//bot.hears('Febrero',(ctx) =>  ctx.reply('esto es Febrero 2022'))
-//bot.hears('Marzo', (ctx) =>  ctx.reply('Esto es marzo 2022'))
-
-//bot.on('pedro', ctx =>  ctx.reply('Esto es marzo 2022'))
+});
 
 bot.launch()

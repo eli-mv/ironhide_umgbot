@@ -18,7 +18,7 @@ const getResultmes = async (req, res) => {
     res.status(200).json(response.rows)
 }
 
-const getUsers = async (req, res) => {
+const getPtotal = async (req, res) => {
     const response = await pool.query('select * from predictiondb' );
     console.log(response.rows);
     res.status(200).json(response.rows)
@@ -48,7 +48,7 @@ const updateResult = async (req, res) => {
 
 
 module.exports= {
-    getUsers,
+    getPtotal,
     postDatos,
     getPre,
     getResultmes,

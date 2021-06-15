@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 
-const { updateResult, getResultmes, getPre, getUsers, postDatos } = require('../controller/index.controller')
+const { updateResult, getResultmes, getPre, getPtotal, postDatos } = require('../controller/index.controller')
 
-router.get('/users', getUsers);
+router.get('/ptotal', getPtotal);
 router.get('/pre', getPre);
-router.post('/users', postDatos);
+router.post('/ptotal', postDatos);
 router.get('/mes/:mes', getResultmes);
 router.put('/update/:mes', updateResult);
 
